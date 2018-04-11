@@ -20,6 +20,7 @@ To setup:
 2. Edit the application.yaml and update mysql connnection parameters
 3. to compile  a .jar file(expensify.jar) run mvn clean package
 4. to run the application run the command 'java -jar target/expensify.jar' from the solution directory.
+5. Go to http://localhost:8080 on your browser
 
 
 
