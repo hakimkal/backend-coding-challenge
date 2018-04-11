@@ -24,7 +24,7 @@ To setup:
 
 
 
-Task 3:
+User Story 3:
 
-You may enter a Euro amount e.g (22 EUR) an automatic conversion will be done using the YahooQL API with a fallback to openexchange.org
+You may enter a Euro amount e.g (22 EUR) an automatic conversion will be done using the Yahoo YQL API with a fallback to openexchange.org
 

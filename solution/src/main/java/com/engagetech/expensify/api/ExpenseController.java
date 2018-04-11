@@ -39,21 +39,21 @@ public class ExpenseController {
 
     @GetMapping("convertoGBP/{eurAmount}")
     @ResponseBody
-    public BigDecimal convertEuroToGBP(@PathVariable BigDecimal eurAmount) throws ExchangeException {
+    public BigDecimal convertEuroToGBP(@PathVariable BigDecimal eurAmount)  {
 
         return getConvertedGBP(eurAmount);
     }
 
     @PostMapping
     @ResponseBody
-    public Expense addExpense(@RequestBody ExpenseDto expenseDto) throws  ExchangeException {
+    public Expense addExpense(@RequestBody ExpenseDto expenseDto)  {
         LOGGER.info(" New Expense submitted via api call");
         //Chain the persist call with convert Dto to expense entity
         return expenseService.saveExpense(convertToExpense(expenseDto));
     }
 
 
-    private Expense convertToExpense(ExpenseDto expenseDto) throws ExchangeException {
+    private Expense convertToExpense(ExpenseDto expenseDto)  {
 
         Expense expense = new Expense();
         if (!Objects.isNull(expenseDto.getAmount())) {
@@ -79,19 +79,24 @@ public class ExpenseController {
         return expense;
     }
 
-    private BigDecimal getConvertedGBP(BigDecimal amount) throws ExchangeException {
+    private BigDecimal getConvertedGBP(BigDecimal amount)  {
         ExchangeCache.setParameter("openexchangerates.org.apikey", "cc8b7fcc82b7447c8686500c87869212");
 
         // define base currency
         ExchangeCache cache = new ExchangeCache("GBP");
 
-        // get the EUR to GBP exchange rate
-        ExchangeRate rate = cache.getRate("EUR");
+        try {
+            // get the EUR to GBP exchange rate
 
-        // convert
-        return  rate.convert(amount);
+            ExchangeRate rate = cache.getRate("EUR");
 
-
+            // convert
+            return rate.convert(amount);
+        } catch (ExchangeException e) {
+            LOGGER.error("Exception trhown %s", e);
+        }
+        return  BigDecimal.valueOf((0.00));
     }
+
 
 }
