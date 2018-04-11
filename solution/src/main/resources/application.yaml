@@ -1,0 +1,22 @@
+application:
+    name: expensify
+spring:
+  datasource:
+        username: root
+        password:
+        url: jdbc:mysql://localhost:3306/expensify_db
+        driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+      hibernate:
+           ddl-auto: update
+           naming:
+            strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+      properties:
+        show_sql: true
+        format_sql: true
+        hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+  thymeleaf:
+      cache: false
+server:
+  port: 8080

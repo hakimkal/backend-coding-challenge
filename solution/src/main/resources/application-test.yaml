@@ -1,0 +1,14 @@
+spring:
+
+  jpa:
+    database: h2
+  datasource:
+    dbcp2:
+      driver-class-name: org.h2.driver
+      url: jdbc:h2:mem:efo;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+  h2:
+    console:
+      enabled: true
+      path: /console/
+      settings:
+        web-allow-others: true
