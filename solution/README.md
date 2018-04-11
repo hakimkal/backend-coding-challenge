@@ -24,5 +24,7 @@ To setup:
 
 
 
+Task 3:
 
+You may enter a Euro amount e.g (22 EUR) an automatic conversion will be done using the YahooQL API with a fallback to openexchange.org
 

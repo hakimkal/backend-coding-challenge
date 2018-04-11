@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class ExpenseDto {
 
-    private double amount;
+    private String amount;
     private String reason;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date date;
