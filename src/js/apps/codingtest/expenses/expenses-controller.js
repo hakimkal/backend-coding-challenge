@@ -39,18 +39,6 @@ app.controller('ctrlExpenses', [
 		$scope.saveExpense = function() {
 			if ($scope.expensesform.$valid) {
 				// Post the expense via REST
-				var strAmount = $scope.newExpense.amount;
-				var s = strAmount.split(/[EUR]| € |\u20AC/gi);
-
-				if (s.length > 1) {
-					var theAmount = parseFloat(s.join('').trim());
-
-					//convert to pounds
-
-					restExpenses.at('convertToGBP', theAmount).get().then(function(gbpAmount) {
-						$scope.newExpense.amount = gbpAmount;
-					});
-				}
 
 				restExpenses.post($scope.newExpense).then(function() {
 					// Reload new expenses list
@@ -59,6 +47,20 @@ app.controller('ctrlExpenses', [
 			}
 		};
 
+		$scope.$watchGroup(['newExpense.amount'], function() {
+			if ($scope.newExpense.amount !== undefined) {
+				var strAmount = $scope.newExpense.amount;
+				var s = strAmount.split(/[EUR]| € |\u20AC/gi);
+
+				if (s.length > 1) {
+					//remove  EUR from amount if any
+					var theAmount = parseFloat(s.join('').trim());
+
+					s = theAmount;
+				}
+			}
+			$scope.newExpense.vat = (s - s / 1.2).toFixed(2);
+		});
 		$scope.clearExpense = function() {
 			$scope.newExpense = {};
 		};
