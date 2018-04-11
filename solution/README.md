@@ -31,5 +31,6 @@ You may enter a Euro amount e.g (22 EUR) an automatic conversion will be done us
 
 User Story 4:
 
-VAT is calculated on front end. note that the conversion to GBP is done at the backend hence all conversion is in the default currency entered by the user.
+VAT is calculated on front end. note that the conversion to GBP is done at the backend hence VAT calculation is in the default currency entered by the user.
+e.g 84.56 Eur has a [20%]  VAT of 14.09 EUR but will only be converted to GBP at the backend.
 
