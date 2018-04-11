@@ -1,6 +1,5 @@
 README
 ====
-How to run the your solution...
 
 IMPORTANT
 ====
