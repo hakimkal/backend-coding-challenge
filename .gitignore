@@ -1,5 +1,5 @@
 node_modules
 build
-static
+./static/
 .vscode
 package-lock.json
